@@ -6,23 +6,24 @@ const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
+  const [all, setAll] = useState(0)
+  const [average, setAverage] = useState(0)
 
   const onClickButtonGood = () =>{
-    let contador = 1
-    contador += good
-    setGood(contador) 
+    setGood(good+1)
+    setAll(all+1)
+    setAverage(average+1)
   }
 
   const onClickButtonNeutral = () =>{
-    let contador = 1
-    contador += neutral
-    setNeutral(contador) 
+    setNeutral(neutral+1) 
+    setAll(all+1) 
   }
 
   const onClickButtonBad = () =>{
-    let contador = 1
-    contador += bad
-    setBad(contador) 
+    setBad(bad+1)
+    setAll(all+1)
+    setAverage(average-1)
   }
 
   return (
@@ -35,6 +36,9 @@ const App = () => {
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
+      <p>all {all}</p>
+      { average === 0 ? <p>average {average}</p> : <p>average {average/all}</p>}
+      { good === 0 ? <p>positive {good}%</p> : <p>positive {(good*100)/all}%</p>}
 
     </div>
   )
