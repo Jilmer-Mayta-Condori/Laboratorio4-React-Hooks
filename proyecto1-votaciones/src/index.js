@@ -35,22 +35,39 @@ const App = () => {
   const Porcentaje = () =>{
     return average/all
   }
+  const YesStatistics = () => {
+    return (
+      <div>
+        <Statistics name="good" value={good}/>
+        <Statistics name="neutral" value={neutral}/>
+        <Statistics name="bad" value={bad}/>
+        <Statistics name="all" value={all}/>
+        <Statistics name="average" value={Porcentaje()}/>
+        <Statistics name="positive" value={Promedio()}/>
+      </div>
+    )
+  }
 
-  return (
+  const NoFeedback = () => {
+    return (
+      <div>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
+  
+
+  return(
     <div>
       <h1>give feedback</h1>
       <button onClick={onClickButtonGood}>good</button>
       <button onClick={onClickButtonNeutral}>neutral</button>
       <button onClick={onClickButtonBad} >bad</button>
       <h1>statistics</h1>
-      <Statistics name="good" value={good}/>
-      <Statistics name="neutral" value={neutral}/>
-      <Statistics name="bad" value={bad}/>
-      <Statistics name="all" value={all}/>
-      <Statistics name="average" value={Porcentaje()}/>
-      <Statistics name="positive" value={Promedio()}/>
+      {good !== 0 || bad !== 0 || neutral !== 0 ? YesStatistics() : NoFeedback()}
     </div>
   )
+    
 }
 
 ReactDOM.render(<App />, 
