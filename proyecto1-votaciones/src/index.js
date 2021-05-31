@@ -43,16 +43,14 @@ const App = () => {
     return <p>No feedback given</p>
   }
   
-
   return(
-    <div>
+    <div style={{textAlign: "center"}}>
       <h1>give feedback</h1>
       <Buttons onClickButtonGood={onClickButtonGood} onClickButtonNeutral={onClickButtonNeutral} onClickButtonBad={onClickButtonBad}></Buttons>
       <h1>statistics</h1>
       {good !== 0 || bad !== 0 || neutral !== 0 ? YesStatistics() : NoFeedback()}
     </div>
   )
-    
 }
 
 ReactDOM.render(<App />, 

@@ -3,7 +3,7 @@ import Statistic from './StatisticComponent'
 
 const Statistics = ({good, neutral, bad, all, porcentaje, promedio}) =>{
     return(
-        <div>
+        <div style={{width: "500px", height: "200px", margin: "auto"}}>
             <Statistic text="good" value={good}/>
             <Statistic text="neutral" value={neutral}/>
             <Statistic text="bad" value={bad}/>
@@ -11,6 +11,7 @@ const Statistics = ({good, neutral, bad, all, porcentaje, promedio}) =>{
             <Statistic text="average" value={porcentaje}/>
             <Statistic text="positive" value={promedio}/>
         </div>
+       
         
     )
 }
