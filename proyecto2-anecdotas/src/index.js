@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 const App = ({anecdotes}) => {
   const [anecdotas, setAnecdotas] = useState(anecdotes)
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState(Math.floor(Math.random() * (6 - 0)) + 0)
 
   const onClickButtonNext = () =>{
     setSelected(Math.floor(Math.random() * (6 - 0)) + 0)
@@ -19,13 +19,42 @@ const App = ({anecdotes}) => {
     setAnecdotas([...anecdotas])
   }
 
+  const AnecdotaWithMoreVotes = () =>{
+    let votoMayor = 0
+    let posicion = 0
+    anecdotas.map((anecdota, index)=>{
+      if (index === 0){
+        votoMayor = anecdotas[index].votos
+        posicion = index
+      }else{
+        if(votoMayor < anecdotas[index].votos){
+          votoMayor = anecdotas[index].votos
+          posicion = index
+        }
+      }
+    })
+    
+    if(votoMayor === 0){
+      return <p>Aun no realizo ninguna votación</p>
+    }else{
+      return (
+        <div>
+          <p>{anecdotas[posicion].anecdota}</p>
+          <p>has {anecdotas[posicion].votos} votes</p>
+        </div>
+      )
+    }
+  }
+
   return (
     <div>
-      <h1>Anecdotas</h1>
+      <h1>Anecdota de Dia</h1>
       <p>{anecdotas[selected].anecdota}</p>
-      <p>Votes: {anecdotas[selected].votos}</p>
+      <p>has {anecdotas[selected].votos} votes</p>
       <button onClick={onClickButtonVotar}>votar</button>
-      <button onClick={onClickButtonNext}>next anecdote</button>      
+      <button onClick={onClickButtonNext}>next anecdote</button>
+      <h1>Anecdota de con mas votos</h1>
+      {AnecdotaWithMoreVotes()}     
     </div>
   )
 }
