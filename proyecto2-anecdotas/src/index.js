@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = ({anecdotes}) => {
   const [anecdotas, setAnecdotas] = useState(anecdotes)
@@ -10,7 +11,6 @@ const App = ({anecdotes}) => {
   }
 
   const onClickButtonVotar = () => {
-    let votos = anecdotas
     const nuevoVoto = {
       votos: (anecdotas[selected].votos+1), 
       anecdota: anecdotas[selected].anecdota
@@ -35,7 +35,7 @@ const App = ({anecdotes}) => {
     })
     
     if(votoMayor === 0){
-      return <p>Aun no realizo ninguna votación</p>
+      return <p>Aun no realizó ninguna votación</p>
     }else{
       return (
         <div>
@@ -47,14 +47,25 @@ const App = ({anecdotes}) => {
   }
 
   return (
-    <div>
-      <h1>Anecdota de Dia</h1>
-      <p>{anecdotas[selected].anecdota}</p>
-      <p>has {anecdotas[selected].votos} votes</p>
-      <button onClick={onClickButtonVotar}>votar</button>
-      <button onClick={onClickButtonNext}>next anecdote</button>
-      <h1>Anecdota de con mas votos</h1>
-      {AnecdotaWithMoreVotes()}     
+    <div style={{width: "800px",margin: "auto", position: "relative"}}>
+      <img src="/imagen/fondo.jpg" style={{width:"100%", opacity:"50%"}} />
+      <div style={{padding: "25px 25px 25px 25px", textAlign: "center", position: "absolute", top:"5%", margin:"auto"}}>
+        <h1>Anecdota de Dia</h1>
+        <div style={{fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;",
+                    fontStyle: "normal", fontSize: "20px", lineHeight:"48px", textAlign: "center"}}>
+          <p>{anecdotas[selected].anecdota}</p>
+          <p>has {anecdotas[selected].votos} votes</p>
+          <button type="button" className="btn btn-success" onClick={onClickButtonVotar}>votar</button>
+          <button type="button" className="btn btn-success" onClick={onClickButtonNext}>next anecdote</button>
+          <br></br>
+        </div>  
+        <h1>Anecdota de con mas votos</h1>
+        <div style={{fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;",
+                    fontStyle: "normal", fontSize: "20px", lineHeight:"48px", textAlign: "center"}}>
+          {AnecdotaWithMoreVotes()}
+        </div>
+      </div>
+      
     </div>
   )
 }
