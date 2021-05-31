@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Statistics from './Components/StatisticsComponent'
+import Buttons from './Components/ButtonsComponent'
 
 const App = () => {
   // save clicks of each button to its own state
@@ -36,33 +37,17 @@ const App = () => {
     return average/all
   }
   const YesStatistics = () => {
-    return (
-      <div>
-        <Statistics name="good" value={good}/>
-        <Statistics name="neutral" value={neutral}/>
-        <Statistics name="bad" value={bad}/>
-        <Statistics name="all" value={all}/>
-        <Statistics name="average" value={Porcentaje()}/>
-        <Statistics name="positive" value={Promedio()}/>
-      </div>
-    )
+    return  <Statistics good={good} neutral={neutral} bad={bad} all={all} porcentaje={Porcentaje()} promedio={Promedio()} />
   }
-
   const NoFeedback = () => {
-    return (
-      <div>
-        <p>No feedback given</p>
-      </div>
-    )
+    return <p>No feedback given</p>
   }
   
 
   return(
     <div>
       <h1>give feedback</h1>
-      <button onClick={onClickButtonGood}>good</button>
-      <button onClick={onClickButtonNeutral}>neutral</button>
-      <button onClick={onClickButtonBad} >bad</button>
+      <Buttons onClickButtonGood={onClickButtonGood} onClickButtonNeutral={onClickButtonNeutral} onClickButtonBad={onClickButtonBad}></Buttons>
       <h1>statistics</h1>
       {good !== 0 || bad !== 0 || neutral !== 0 ? YesStatistics() : NoFeedback()}
     </div>
